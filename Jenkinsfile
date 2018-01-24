@@ -27,6 +27,7 @@ THE SOFTWARE.
 
 //this has to be taken as a DEMO
 node('docker') {
+    deleteDir()
     try {
         stage('Checkout'){
 

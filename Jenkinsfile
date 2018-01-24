@@ -69,7 +69,6 @@ node('docker') {
         			    reportBuildPolicy: 'ALWAYS',
         			    results: [[path: 'report/allure-results']]
                     	])
-                }
+               }
     }
-
 }

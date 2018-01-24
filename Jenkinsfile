@@ -44,17 +44,6 @@ node('docker') {
                 //generally you do not give the full path, this is a quick and dirty fix!!!
                 sh '/usr/local/bin/docker run -v $(PWD):/test -w /test node:8 yarn install'
                 sh '/usr/local/bin/docker run -v $(PWD):/test -w /test node:8 yarn test:ci'
-                
-                //import allure results
-                script {
-                    	allure([
-        			    includeProperties: true,
-        			    jdk: '',
-        			    properties: [],
-        			    reportBuildPolicy: 'ALWAYS',
-        			    results: [[path: 'report/allure-results']]
-                    	])
-                }
             }
         
 
@@ -68,6 +57,18 @@ node('docker') {
 
         currentBuild.result = "FAILURE"
         throw err
+    }
+    finally{
+                //import allure results
+                script {
+                    	allure([
+        			    includeProperties: true,
+        			    jdk: '',
+        			    properties: [],
+        			    reportBuildPolicy: 'ALWAYS',
+        			    results: [[path: 'report/allure-results']]
+                    	])
+                }
     }
 
 }

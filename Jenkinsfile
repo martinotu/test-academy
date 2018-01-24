@@ -24,6 +24,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+
+//this has to be taken as a DEMO
 node('docker') {
     try {
         stage('Checkout'){
@@ -38,6 +40,8 @@ node('docker') {
        
             stage('Test') {
                 sh 'pwd'
+
+                //generally you do not give the full path, this is a quick and dirty fix!!!
                 sh '/usr/local/bin/docker run -v $(PWD):/test -w /test node:8 yarn install'
                 sh '/usr/local/bin/docker run -v $(PWD):/test -w /test node:8 yarn test:ci'
                 

@@ -52,7 +52,6 @@ node('docker') {
             echo 'Deploying...'
 
         }
-
     }
     catch (err) {
 

@@ -30,7 +30,6 @@ node('docker') {
     deleteDir()
     try {
         stage('Checkout'){
-
           checkout scm
         }
 
@@ -38,19 +37,14 @@ node('docker') {
            echo "Building..."
         }
 
-       
-            stage('Test') {
-                sh 'pwd'
-
-                //generally you do not give the full path, this is a quick and dirty fix!!!
-                sh '/usr/local/bin/docker run -v $(PWD):/test -w /test node:8 yarn install'
-                sh '/usr/local/bin/docker run -v $(PWD):/test -w /test node:8 yarn test:ci'
-            }
+        stage('Test') {
+            //generally you do not give the full path, this is a quick and dirty fix!!!
+            sh '/usr/local/bin/docker run -v $(PWD):/test -w /test node:8 yarn install'
+            sh '/usr/local/bin/docker run -v $(PWD):/test -w /test node:8 yarn test:ci'
+        }
         
-
         stage('Deploy'){
             echo 'Deploying...'
-
         }
 
     }

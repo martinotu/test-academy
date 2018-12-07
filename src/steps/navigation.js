@@ -1,10 +1,11 @@
-import cucumber from 'cucumber';
+var {Then, Given} = require('cucumber');
+
 import homePage from '../model/HomePage';
 import womanPage from '../model/WomanPage'
 import dressesPage from '../model/DressesPage'
 import tshirtsPage from '../model/TshirtsPage'
 
-cucumber.defineSupportCode(function ({ Given, Then }) {
+
   Given(/^I am on the home page/, function () {
     homePage.open();
   });
@@ -33,5 +34,3 @@ cucumber.defineSupportCode(function ({ Given, Then }) {
   Then(/^I see that t-shirts page is loaded/, function() {
 	  expect(tshirtsPage.isLoaded());
   });
-  
-});

@@ -1,8 +1,5 @@
-import cucumber from 'cucumber';
+var {Then} = require('cucumber');
 
-cucumber.defineSupportCode(function ({ Then }) {
   Then(/^I clean the browser cookies/, function () {
     browser.deleteCookie();
   });
-});
-

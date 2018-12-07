@@ -1,7 +1,6 @@
-import cucumber from 'cucumber'
+var {Then, Given} = require('cucumber');
 import homePage from '../model/HomePage';
 
-cucumber.defineSupportCode(function ({ Given, Then }) {
     Given(/^I search for (.*)/, function (q) {
         //example that uses the model definition directly
         homePage.searchFld.waitForVisible();
@@ -23,4 +22,3 @@ cucumber.defineSupportCode(function ({ Given, Then }) {
     Then(/^I see there are no results/, function() {
         expect(homePage.noResults.waitForVisible()).to.be.true;
     });
-});

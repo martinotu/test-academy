@@ -1,8 +1,8 @@
-import cucumber from 'cucumber';
+var {Then, Given, When} = require('cucumber');
 import homePage from '../model/HomePage';
 import loginPage from '../model/LoginPage';
 
-cucumber.defineSupportCode(function ({ Given, Then, When }) {
+
   Given(/^I log in with a valid account/, function () {
     loginPage.open(); //is loginPage has this.path set then you can open it directly(uses the URL)
     loginPage.loginAs("turturiellomartino@gmail.com", "password");
@@ -39,7 +39,4 @@ cucumber.defineSupportCode(function ({ Given, Then, When }) {
   Then(/^I do not see my account/, function () {
     expect(homePage.isAuthenticated()).to.be.false;
   });
-
-
-});
 

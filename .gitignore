@@ -6,3 +6,4 @@ errorShots
 report
 .DS_Store
 assets/.DS_Store
+yarn.lock

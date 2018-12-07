@@ -1,4 +1,7 @@
 const customCommands = require('../src/utils/customCommands');
+const reporter = require('wdio-allure-reporter')
+
+
 
 exports.config = {
   //
@@ -144,7 +147,10 @@ exports.config = {
   reporterOptions: { 
     outputDir: './report/',
     allure: {
-      outputDir: './report/allure-results'
+      outputDir: './report/allure-results',
+      disableWebdriverStepsReporting: false,
+      disableWebdriverScreenshotsReporting: true,
+      useCucumberStepReporter: true
     },
   },
   cucumberOpts: {
@@ -305,12 +311,12 @@ exports.config = {
    */
   // onComplete: function(exitCode) {
   // }
+
   afterStep: function (stepResult) {
     // if test fail save the screenshot.
-    if (stepResult.status == "failed") {
-        // save screenshot
-        browser.screenshot();
-    }
-
-  },
+    if (stepResult.status === "failed") {
+      var screenshot = browser.saveScreenshot(); // returns base64 string buffer
+      reporter.createAttachment("screenshot",screenshot,'image/png')      
+        }
+  }
 }
